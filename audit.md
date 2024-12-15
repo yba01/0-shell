@@ -10,31 +10,31 @@ The use of execution commands (such as exec, system, os/exec, or similar functio
 
 ##### Open a terminal and run the project.
 
-###### Can you confirm that the project runs and displays a unix shell?
+###### Can you confirm that the project runs and displays a unix shell? ```pass```
 
 ##### Open a terminal and run the project.
 
-###### Can you confirm that this interpreter displays at least a simple `$` and waits for you to type a command?
+###### Can you confirm that this interpreter displays at least a simple `$` and waits for you to type a command? ```pass```
 
 ##### Try to run a command of your choice.
 
-###### Can you confirm that the interpreter only validates the command if you press enter?
+###### Can you confirm that the interpreter only validates the command if you press enter?  ```pass```
 
 ##### Try to run the command `"exit"`.
 
-###### Can you confirm that the interpreter terminates properly and gives back the parent's shell?
+###### Can you confirm that the interpreter terminates properly and gives back the parent's shell?  ```pass```
 
 ##### Try to run the command `"echo "something!""`. Do the same in your computer terminal.
 
-###### Can you confirm that the displayed message of the project is exactly the same as the computer terminal?
+###### Can you confirm that the displayed message of the project is exactly the same as the computer terminal? ```pass```
 
 ##### Try to run the command `"echo something else"` (without double quotes). Do the same in your computer terminal.
 
-###### Can you confirm that the displayed message of the project is exactly the same as the computer terminal?
+###### Can you confirm that the displayed message of the project is exactly the same as the computer terminal? ```pass```
 
 ##### Try to run the command `"pwd"`.
 
-###### Can you confirm that the interpreter displayed the current path?
+###### Can you confirm that the interpreter displayed the current path? ```pass```
 
 ##### Try to open the project and create a parent folder with two children folders using the command "mkdir". Then enter the parent folder and do "pwd".
 

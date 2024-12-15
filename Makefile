@@ -1,4 +1,5 @@
 # Variables
+GIT = git
 GO = go
 SRC_DIR = src
 MAIN_FILE = main.go
@@ -32,3 +33,9 @@ tidy:
 info:
 	$(GO) version
 	$(GO) env
+
+# push
+push:
+	$(GIT) add .
+	$(GIT) commit -m "maj"
+	$(GIT) push

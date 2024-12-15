@@ -19,6 +19,7 @@ func main() {
 			fmt.Println("Error reading input:", err)
 			continue
 		}
+		input = strings.ReplaceAll(input,"\"","")
 
 		command := strings.TrimSpace(input) // Supprime les espaces inutiles
 
