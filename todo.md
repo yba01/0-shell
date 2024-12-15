@@ -26,6 +26,22 @@ The shell must support the following commands, implemented from scratch:
 - Error management is required for invalid commands, missing arguments, and permissions.
 
 ---
+### Structure of Project
+```tree
+
+0-shell/
+  ├── src/
+  │   ├── internal_commands/    # Commandes internes comme exit, echo, pwd
+  │   ├── file_commands/        # Commandes relatives aux fichiers comme ls, cp, mv
+  │   └── process_manager/      # Gestion des processus (si nécessaire pour l'avenir)
+  ├── tests/                    # Tests unitaires et d'intégration
+  ├── README.md                 # Documentation du projet
+  ├── go.mod                    # Gestion des dépendances Go
+  ├── go.sum                    # Hashs des dépendances
+  └── main.go                   # Point d'entrée du programme
+
+```
+
 
 ## Developer Tasks
 
