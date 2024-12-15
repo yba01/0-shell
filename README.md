@@ -38,3 +38,30 @@ Le shell doit aussi :
 
 - Gérer les interruptions avec Ctrl + D.
 - Fournir des messages d'erreur clairs.
+
+# Usage
+
+```bash
+student$ ./0-shell
+$ cd dev
+$ pwd
+dev
+$ ls -l
+total 0
+crw-------  1 root   root     10,    58 fev  5 09:21 acpi_thermal_rel
+crw-r--r--  1 root   root     10,   235 fev  5 09:21 autofs
+drwxr-xr-x  2 root   root           540 fev  5 09:21 block
+crw-------  1 root   root     10,   234 fev  5 09:21 btrfs-control
+drwxr-xr-x  3 root   root            60 fev  5 09:20 bus
+drwxr-xr-x  2 root   root          4400 fev  5 09:21 char
+crw-------  1 root   root      5,     1 fev  5 09:21 console
+lrwxrwxrwx  1 root   root            11 fev  5 09:20 core -> /proc/kcore
+drwxr-xr-x  2 root   root            60 fev  5 09:20 cpu
+crw-------  1 root   root     10,    59 fev  5 09:21 cpu_dma_latency
+$ something
+Command 'something' not found
+$ echo "Hello There"
+Hello There
+$ exit
+student$
+```
