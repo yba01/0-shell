@@ -38,27 +38,27 @@ The use of execution commands (such as exec, system, os/exec, or similar functio
 
 ##### Try to open the project and create a parent folder with two children folders using the command "mkdir". Then enter the parent folder and do "pwd".
 
-###### Can you confirm that the interpreter displayed the current path?
+###### Can you confirm that the interpreter displayed the current path? ```pass```
 
 ##### Try to enter a directory of your choice by using the command `"cd dir/of/your/choice"`.
 
-###### Can you confirm that the interpreter took you to the correct path? Use `"pwd"` to confirm.
+###### Can you confirm that the interpreter took you to the correct path? Use `"pwd"` to confirm.    ```pass```
 
 ##### Try to run only the command `"cd"`.
 
-###### Can you confirm that the interpreter took you to the users home folder? Use `"pwd"` to confirm.
+###### Can you confirm that the interpreter took you to the users home folder? Use `"pwd"` to confirm.  ```pass```
 
 ##### Try to run the command `"ls"` in a directory at your choice. Do the same in your computer terminal.
 
-###### Can you confirm that the output is the same in the project and in your computer terminal?
+###### Can you confirm that the output is the same in the project and in your computer terminal?    ```pass```
 
 ##### Try to run the command `"ls -l -a -F"` in a directory at your choice. Do the same in your computer terminal.
 
-###### Can you confirm that the output is the same in the project and in your computer terminal?
+###### Can you confirm that the output is the same in the project and in your computer terminal?    ```pass```
 
 ##### Try to run the commands `"mkdir new_folder1"` and `"mkdir new_folder2"` in a directory of your choice.
 
-###### Can you confirm that the directory `new_folder1` and `new_folder2` were created?
+###### Can you confirm that the directory `new_folder1` and `new_folder2` were created? ```pass```
 
 ##### Create a document inside the `new_folder1` called `new_doc.txt` with some random text inside. Try to run the command `"cp new_doc.txt ../folder2"` to copy the document to the folder `new_folder2`.
 

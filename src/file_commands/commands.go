@@ -109,10 +109,9 @@ func lsIt(args []string) {
 		dotDotFile, _ := GetSingleFileInfo(path + "/..")
 		files = append([]FileInfo{dotFile, dotDotFile}, files...)
 	}
-
 	// Sort files by name
 	sort.Slice(files, func(i, j int) bool {
-		return files[i].Name < files[j].Name
+		return strings.ToLower(files[i].Name) < strings.ToLower(files[j].Name)
 	})
 
 	// Process and display files

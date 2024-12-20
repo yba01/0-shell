@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	// int_cmd "0-shell/src/internal_commands"
+	int_cmd "0-shell/src/internal_commands"
 )
 
 func main() {
@@ -33,7 +33,7 @@ func main() {
 			continue
 		}
 
-		// int_cmd.HandleCommand(command)
+		int_cmd.HandleCommand(command)
 		file_cmd.HandleCommand(command)
 	}
 }
