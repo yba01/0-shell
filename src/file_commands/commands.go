@@ -24,7 +24,6 @@ func HandleCommand(intput string) {
 	case "ls":
 		lsIt(args[1:])
 	default:
-		fmt.Printf("Command '%s' not found\n", args[0])
 	}
 
 }

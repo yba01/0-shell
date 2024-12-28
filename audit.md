@@ -54,7 +54,7 @@ The use of execution commands (such as exec, system, os/exec, or similar functio
 
 ##### Try to run the command `"ls -l -a -F"` in a directory at your choice. Do the same in your computer terminal.
 
-###### Can you confirm that the output is the same in the project and in your computer terminal?    ```pass```
+###### Can you confirm that the output is the same in the project and in your computer terminal?    ```fail```
 
 ##### Try to run the commands `"mkdir new_folder1"` and `"mkdir new_folder2"` in a directory of your choice.
 

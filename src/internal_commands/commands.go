@@ -19,7 +19,6 @@ func HandleCommand(intput string) {
 	case "pwd":
 		pwdCommand()
 	default:
-		fmt.Printf("Command '%s' not found\n", args[0])
 	}
 
 }
