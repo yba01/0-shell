@@ -37,5 +37,5 @@ info:
 # push
 push:
 	$(GIT) add .
-	$(GIT) commit -m "maj"
+	$(GIT) commit -m "gestion ctrl +D and ctrl + C and some organiz"
 	$(GIT) push
