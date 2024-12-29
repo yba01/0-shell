@@ -1,5 +1,5 @@
 #!/bin/bash
-desired_branch="master"
+desired_branch="barry"
 username="your_username"
 email="your_email"
 # Prints its first argument...
