@@ -9,6 +9,7 @@ import (
 	"strings"
 	"syscall"
 	"time"
+	"0-shell/src/rm_commands"
 )
 
 // Fonction pour gerer les commande
@@ -23,6 +24,11 @@ func HandleCommand(intput string) {
 		makedir(args[1:])
 	case "ls":
 		lsIt(args[1:])
+	case "rm":
+		err := rm_commands.RemoveFiles(args[1:]) // Appel de RemoveFiles avec les arguments
+		if err != nil {
+			fmt.Println(err) // Afficher l'erreur si RemoveFiles échoue
+		}
 	default:
 	}
 
