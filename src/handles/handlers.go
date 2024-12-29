@@ -3,6 +3,8 @@ package tools
 import (
 	file_cmd "0-shell/src/file_commands"
 	int_cmd "0-shell/src/internal_commands"
+	rm_cmd "0-shell/src/rm_commands"
+
 
 	"bufio"
 	"fmt"
@@ -79,5 +81,7 @@ func Loop() {
 
 		int_cmd.HandleCommand(command)
 		file_cmd.HandleCommand(command)
+		rm_cmd.HandleCommand(command)
+
 	}
 }

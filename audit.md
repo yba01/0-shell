@@ -72,9 +72,9 @@ The use of execution commands (such as exec, system, os/exec, or similar functio
 
 ###### Can you confirm that the directory `new_folder2` is inside of the directory `new_folder1`?
 
-##### Try to run the command `"rm -r new_folder1"` to remove what was created above.
+##### Try to run the command `"rm -r new_folder1"` to remove what was created above. 
 
-###### Can you confirm that the directory `new_folder1` was removed?
+###### Can you confirm that the directory `new_folder1` was removed? ```pass```
 
 #### Bonus
 
