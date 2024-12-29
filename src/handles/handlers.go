@@ -75,7 +75,7 @@ func Loop() {
 		}
 
 		if !IsValidCommand(command) {
-			fmt.Printf("Command '%s' not found\n", command)
+			fmt.Printf("aaaaaCommand '%s' not found\n", command)
 			continue
 		}
 

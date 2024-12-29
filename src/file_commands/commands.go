@@ -116,9 +116,9 @@ func lsIt(args []string) {
 	// Process and display files
 	for i, file := range files {
 		name := classified(file, classify)
-			if i == 0 && longList{
-				fmt.Printf("total %d\n", totalBlocks/2)
-			}
+		if i == 0 && longList {
+			fmt.Printf("total %d\n", totalBlocks/2)
+		}
 
 		// Skip hidden files unless -a is specified
 		if !showAll && name[0] == '.' {
@@ -129,26 +129,26 @@ func lsIt(args []string) {
 		if longList {
 
 			// for _, file := range files {
-				mode := file.Mode.String()
-				if file.Mode&os.ModeSymlink != 0 {
-					mode = "l" + mode[1:]
-				}
-				links := file.NumLinks
-				size := file.Size
-				timeStr := formatTime(file.ModTime)
-				// name := getColoredName(file)
+			mode := file.Mode.String()
+			if file.Mode&os.ModeSymlink != 0 {
+				mode = "l" + mode[1:]
+			}
+			links := file.NumLinks
+			size := file.Size
+			timeStr := formatTime(file.ModTime)
+			// name := getColoredName(file)
 
-				fmt.Printf("%s %2d %s %s %6d %s %s", mode, links, file.User, file.Group, size, timeStr, name)
+			fmt.Printf("%s %2d %s %s %6d %s %s", mode, links, file.User, file.Group, size, timeStr, name)
 
-				if file.Mode&os.ModeSymlink != 0 {
-					target, err := os.Readlink(file.Path)
-					if err == nil {
-						fmt.Printf(" -> %s", target)
-					}
+			if file.Mode&os.ModeSymlink != 0 {
+				target, err := os.Readlink(file.Path)
+				if err == nil {
+					fmt.Printf(" -> %s", target)
 				}
-				if i != len(files)-1 {
-					fmt.Println()
-				}
+			}
+			if i != len(files)-1 {
+				fmt.Println()
+			}
 			// }
 		} else {
 			// Just show the name
