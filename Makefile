@@ -39,3 +39,6 @@ push:
 	$(GIT) add .
 	$(GIT) commit -m "	rm all done"
 	$(GIT) push
+
+
+
