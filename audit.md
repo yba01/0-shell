@@ -62,15 +62,15 @@ The use of execution commands (such as exec, system, os/exec, or similar functio
 
 ##### Create a document inside the `new_folder1` called `new_doc.txt` with some random text inside. Try to run the command `"cp new_doc.txt ../folder2"` to copy the document to the folder `new_folder2`.
 
-###### Can you confirm that the document `new_doc.txt` is inside the `new_folder2`?
+###### Can you confirm that the document `new_doc.txt` is inside the `new_folder2`? ```pass```
 
 ##### Try to run the command `"cat new_folder1/new_doc"`. Do the same in your computer terminal.
 
-###### Can you confirm that the output is the same in the project and in your computer terminal?
+###### Can you confirm that the output is the same in the project and in your computer terminal?```pass```
 
 ##### Try to run the commands `"mv new_folder2 new_folder1"` to move the directory `new_folder2` inside of the directory `new_folder1`.
 
-###### Can you confirm that the directory `new_folder2` is inside of the directory `new_folder1`?
+###### Can you confirm that the directory `new_folder2` is inside of the directory `new_folder1`?```pass```
 
 ##### Try to run the command `"rm -r new_folder1"` to remove what was created above. 
 

@@ -8,10 +8,8 @@ import (
 	"strings"
 )
 
-// Fonction pour gerer les commande
-
 func HandleCommand(intput string) {
-	args := strings.Fields(intput) // Découpe l'entrée en mots (séparés par des espaces)
+	args := strings.Fields(intput)
 
 	switch args[0] {
 	case "cat":
@@ -73,20 +71,39 @@ func cp(src, dest string) error {
 }
 
 func copyFile(src, dest string) error {
+	sourceInfo, err := os.Stat(src)
+	if err != nil {
+		return fmt.Errorf("source file does not exist: %w", err)
+	}
+
+	destInfo, err := os.Stat(dest)
+	if err == nil && destInfo.IsDir() {
+		dest = filepath.Join(dest, filepath.Base(src))
+	}
+
 	sourceFile, err := os.Open(src)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to open source file: %w", err)
 	}
 	defer sourceFile.Close()
 
-	destFile, err := os.Create(dest)
+	destinationFile, err := os.Create(dest)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to create destination file: %w", err)
 	}
-	defer destFile.Close()
+	defer destinationFile.Close()
 
-	_, err = io.Copy(destFile, sourceFile)
-	return err
+	_, err = io.Copy(destinationFile, sourceFile)
+	if err != nil {
+		return fmt.Errorf("failed to copy file: %w", err)
+	}
+
+	err = os.Chmod(dest, sourceInfo.Mode())
+	if err != nil {
+		return fmt.Errorf("failed to set permissions: %w", err)
+	}
+
+	return nil
 }
 
 func copyDir(srcDir, destDir string) error {
@@ -109,9 +126,24 @@ func copyDir(srcDir, destDir string) error {
 }
 
 func mv(src, dest string) error {
-	err := os.Rename(src, dest)
+	_, err := os.Stat(src)
 	if err != nil {
-		return err
+		return fmt.Errorf("source does not exist: %w", err)
 	}
+
+	destInfo, err := os.Stat(dest)
+	if err == nil {
+		if destInfo.IsDir() {
+			dest = filepath.Join(dest, filepath.Base(src))
+		} else {
+			return fmt.Errorf("destination exists and is not a directory")
+		}
+	}
+
+	err = os.Rename(src, dest)
+	if err != nil {
+		return fmt.Errorf("failed to move: %w", err)
+	}
+
 	return nil
 }
