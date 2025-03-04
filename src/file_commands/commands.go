@@ -71,7 +71,7 @@ func lsIt(args []string) {
 			if strings.HasPrefix(flag, "-") {
 				fmt.Printf("ls: invalid option -- %s\n", val)
 				return
-			}else{
+			} else {
 				directories = append(directories, flag)
 			}
 		}
@@ -87,7 +87,7 @@ func lsIt(args []string) {
 	}
 	if len(directories) == 0 {
 		directories = append(directories, ".")
-	}else{
+	} else {
 		sort.Slice(directories, func(i, j int) bool {
 			return strings.ToLower(directories[i]) < strings.ToLower(directories[j])
 		})
@@ -96,24 +96,24 @@ func lsIt(args []string) {
 		if len(directories) > 1 {
 			if add == "." {
 				fmt.Printf("%s:\n", add)
-			}else{
+			} else {
 				fmt.Printf("%s/:\n", add)
 			}
 		}
-		files, totalBlocks, print, err :=getFileDir(add, showAll)
+		files, totalBlocks, print, err := getFileDir(add, showAll)
 		if err != nil {
 			fmt.Printf("Error getting file info : %v\n", err)
 			return
 		}
-	
+
 		// Get current directory
 		path, err := os.Getwd()
 		if err != nil {
 			fmt.Printf("Error getting current directory: %v\n", err)
 			return
 		}
-	
-		if showAll && print{
+
+		if showAll && print {
 			dotFile, _ := GetSingleFileInfo(path + "/.")
 			dotDotFile, _ := GetSingleFileInfo(path + "/..")
 			files = append([]FileInfo{dotFile, dotDotFile}, files...)
@@ -123,55 +123,71 @@ func lsIt(args []string) {
 		sort.Slice(files, func(i, j int) bool {
 			return strings.ToLower(files[i].Name) < strings.ToLower(files[j].Name)
 		})
-	
-		// Process and display files
-		for i, file := range files {
+
+		// Filter out hidden files if not showing all
+		visibleFiles := []FileInfo{}
+		for _, file := range files {
 			name := classified(file, classify)
-				if i == 0 && longList && print{
-					fmt.Printf("total %d\n", totalBlocks/2)
-				}
-	
-			// Skip hidden files unless -a is specified
-			if !showAll && name[0] == '.' {
-				continue
+			if showAll || name[0] != '.' {
+				visibleFiles = append(visibleFiles, file)
 			}
-	
-			// Get detailed information for -l flag
-			if longList {
-	
-				// for _, file := range files {
-					mode := file.Mode.String()
-					if file.Mode&os.ModeSymlink != 0 {
-						mode = "l" + mode[1:]
-					}
-					links := file.NumLinks
-					size := file.Size
-					timeStr := formatTime(file.ModTime)
-					// name := getColoredName(file)
-	
-					fmt.Printf("%s %2d %s %s %6d %s %s", mode, links, file.User, file.Group, size, timeStr, name)
-	
-					if file.Mode&os.ModeSymlink != 0 {
-						target, err := os.Readlink(file.Path)
-						if err == nil {
-							fmt.Printf(" -> %s", target)
-						}
-					}
-					if i != len(files)-1 {
-						fmt.Println()
-					}
-				// }
-			} else {
-				// Just show the name
-				fmt.Printf("%s  ", name)
-			}
-	
 		}
-		if i != len(directories) - 1 {
-			fmt.Printf("\n\n")
+
+		if longList && print {
+			fmt.Printf("total %d\n", totalBlocks/2)
+			// Long list format
+			for i, file := range visibleFiles {
+				name := classified(file, classify)
+				mode := file.Mode.String()
+				if file.Mode&os.ModeSymlink != 0 {
+					mode = "l" + mode[1:]
+				}
+				links := file.NumLinks
+				size := file.Size
+				timeStr := formatTime(file.ModTime)
+
+				fmt.Printf("%s %2d %s %s %6d %s %s", mode, links, file.User, file.Group, size, timeStr, name)
+
+				if file.Mode&os.ModeSymlink != 0 {
+					target, err := os.Readlink(file.Path)
+					if err == nil {
+						fmt.Printf(" -> %s", target)
+					}
+				}
+				if i != len(visibleFiles)-1 {
+					fmt.Println()
+				}
+			}
+		} else {
+			// Column format
+			maxTerminalWidth := 80 // Default terminal width
+			maxNameLength := 0
+			for _, file := range visibleFiles {
+				name := classified(file, classify)
+				if len(name) > maxNameLength {
+					maxNameLength = len(name)
+				}
+			}
+
+			colWidth := maxNameLength + 2 // Add some padding
+			cols := maxTerminalWidth / colWidth
+			if cols == 0 {
+				cols = 1
+			}
+
+			for i := 0; i < len(visibleFiles); i += cols {
+				for j := 0; j < cols && (i+j) < len(visibleFiles); j++ {
+					name := classified(visibleFiles[i+j], classify)
+					fmt.Printf("%-*s", colWidth, name)
+				}
+				fmt.Println()
+			}
+		}
+
+		if i != len(directories)-1 {
+			fmt.Printf("\n")
 		}
 	}
-	fmt.Println()
 }
 // Helper function to check if a file is executable
 func isExecutable(file FileInfo) bool {
